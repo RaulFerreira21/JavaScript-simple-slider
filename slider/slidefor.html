@@ -1,0 +1,94 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="stilo.css" />
+</head>
+
+<body>
+    <audio id="audio">
+        <source src="sound.mp3" type="audio/mp3" class="audio">
+    </audio>
+    <div class="corpo">
+        <img src="bola1.jpg" id="img" />
+        <input type="button" class="back" value=" <- " />
+        <input type="button" class="next" value=" -> " />
+    </div>
+    <script>
+        var msg = "Pickachu";
+        var index = 0;
+        var indextext = 0;
+        var interval;
+        var imagens = ["bola1.jpg", "bola2.jpg", "bola3.jpg", "bola4.jpg"];
+        var audio = document.getElementById("audio");
+        var audio2 = document.getElementById("audio2");
+        var audio3 = document.getElementById("audio3");
+
+        var p = document.createElement("p");
+
+        start();
+
+        document.getElementById("img").addEventListener("mouseleave", start)
+        function start() {
+            interval = setInterval(() => {
+                // document.getElementById("p").innerHTML = msg[indextext++]
+                document.getElementById("img").src = imagens[index++];
+                if (index == imagens.length) { index = 0 }
+
+            }, 2000);
+        }
+        document.getElementById("img").addEventListener("mouseenter", stop)
+        function stop() {
+            clearInterval(interval);
+
+        }
+
+
+        document.querySelector(".next").addEventListener("click", () => {
+            // for(i = 0; i<imagens.length; i++){
+            if (index == imagens.length) {
+                index = 0;
+            }
+            document.getElementById("img").src = imagens[index++];
+
+            // }    
+        })
+        document.querySelector(".back").addEventListener("click", () => {
+            index - 1;
+            if (index < 0) {
+                index = 3;
+            }
+            document.getElementById("img").src = imagens[index--];
+        })
+        document.getElementById("img").addEventListener("click", play)
+        function play() {
+            if (index == 0) {
+                audio.play();
+            } else if (index == 1) {
+                audio2.play();
+            } else {
+                audio.play();
+            }
+        }
+        document.getElementById("img").addEventListener("click", () => {
+            document.querySelector(".corpo").appendChild(p);
+            p.innerText = "pickachu!"
+        })
+        function alterna() {
+
+        }
+    //  function para(){
+    //     document.getElementById("img").addEventListener("mouseleave", ()=>{
+    //         var i;
+    //         for (i = 0; i < index.length; i++) {
+    //             imagens[i].style.width = "400px";  
+    //         }
+    //         document.getElementById("img").src = imagens[index++];
+    //         if (index == imagens.length) {index = 0}
+
+    //     })
+    // }
+    //setInterval("para()", 1000)
+    </script>
+</body>
+
+</html>
